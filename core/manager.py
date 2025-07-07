@@ -14,13 +14,16 @@ def load_scrapers(config_path='config/sources.yaml'):
         scrapers.append(scraper_class())
     return scrapers
 
-def search_all(query):
+def search_all(params):
     scrapers = load_scrapers()
     results = []
     for scraper in scrapers:
         try:
-            result = scraper.search(query)
-            if result:  # Non-empty
+            matches_type = getattr(scraper, 'handles', None)
+            if matches_type and params.get('type') not in matches_type:
+                continue  # only run scrapers that handle this type
+            result = scraper.search(params)
+            if result:
                 results.extend(result)
         except Exception as e:
             print(f"[{scraper.name}] Error: {e}")
