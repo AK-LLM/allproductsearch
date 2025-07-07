@@ -1,13 +1,10 @@
 sources:
-  - module: retail
-    class: RetailScraper
+  - module: google_shopping
+    class: GoogleShoppingScraper
     enabled: true
-  - module: marketplace
-    class: MarketplaceScraper
+  - module: travel
+    class: TravelScraper
     enabled: true
-  - module: classifieds
-    class: ClassifiedsScraper
-    enabled: true
-  - module: websearch
-    class: WebSearchScraper
+  - module: hotel
+    class: HotelScraper
     enabled: true
