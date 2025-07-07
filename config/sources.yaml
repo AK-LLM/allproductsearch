@@ -1,12 +1,6 @@
 sources:
-  - module: google_shopping
-    class: GoogleShoppingScraper
-    enabled: true
-  - module: ebay
-    class: EbayScraper
-    enabled: true
-  - module: walmart
-    class: WalmartScraper
+  - module: duckduckgo
+    class: DuckDuckGoScraper
     enabled: true
   - module: travel
     class: TravelScraper
