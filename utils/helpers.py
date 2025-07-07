@@ -1,10 +1,8 @@
 def clean_price(price_str):
-    """Standardizes price formats, removes extraneous chars."""
     if not price_str:
         return ""
-    price = price_str.replace("$", "").replace(",", "").split()[0]
-    try:
-        price_val = float(price)
-        return f"${price_val:,.2f}"
-    except Exception:
-        return price_str.strip()
+    import re
+    m = re.search(r"[\d,.]+", price_str.replace(",", ""))
+    if m:
+        return f"${m.group(0)}"
+    return price_str.strip()
