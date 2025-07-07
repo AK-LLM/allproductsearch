@@ -2,8 +2,7 @@ import streamlit as st
 import pandas as pd
 from core.manager import search_all
 
-st.set_page_config(page_title="Universal Meta-Search", layout="wide")
-
+st.set_page_config(page_title="Universal Product/Travel/Hotel Meta-Search", layout="wide")
 st.title("Universal Product/Travel/Hotel Meta-Search")
 
 st.sidebar.title("Search Type")
