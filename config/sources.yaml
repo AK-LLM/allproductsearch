@@ -1,0 +1,13 @@
+sources:
+  - module: retail
+    class: RetailScraper
+    enabled: true
+  - module: marketplace
+    class: MarketplaceScraper
+    enabled: true
+  - module: classifieds
+    class: ClassifiedsScraper
+    enabled: true
+  - module: websearch
+    class: WebSearchScraper
+    enabled: true
