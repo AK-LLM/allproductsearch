@@ -1,18 +1,16 @@
-# Universal Product Price Meta-Search (POC)
+# Universal Product/Travel/Hotel Meta-Search
 
-A modular, extensible proof-of-concept for searching "everything"—all product prices across as many retail, marketplace, and classifieds sources as possible.
-
-## Features
-
-- Search multiple sources in parallel: retail, marketplace, classifieds, and web search fallback
-- Supports "everything"—any product, any vendor, new/used, multi-item
-- Add your own scrapers by dropping plugins in `sources/` and editing `config/sources.yaml`
-- Export results to CSV
+This app lets you search products (with live prices) via Google Shopping, and perform demo airfare/hotel queries. Modular, extensible, ready for your own API or scraper plugins.
 
 ## Usage
 
-```bash
-git clone https://github.com/YOUR-USER/product_price_search.git
-cd product_price_search
-pip install -r requirements.txt
-streamlit run app.py
+- Select a search type (Product, Airfare, Hotel) from the sidebar.
+- Enter your query/parameters.
+- Click "Search" to view results from Google Shopping or demo travel sources.
+- Export results to CSV.
+
+## To Run
+
+1. Clone this repo
+2. `pip install -r requirements.txt`
+3. `streamlit run app.py`
