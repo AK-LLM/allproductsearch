@@ -13,25 +13,24 @@ class DuckDuckGoScraper(BaseScraper):
         headers = {"User-Agent": "Mozilla/5.0"}
         try:
             resp = requests.get(url, headers=headers, timeout=10)
-            soup = BeautifulSoup(resp.text, "lxml")
+            html = resp.text
+            soup = BeautifulSoup(html, "lxml")
             results = []
-            # DuckDuckGo results are in div.result, but .result__a is the link/title
-            for result in soup.select("div.result"):
+            for result in soup.select("div.web-result, div.result"):
                 link = result.select_one("a.result__a")
-                snippet = result.select_one("a.result__snippet")
                 if link:
                     results.append({
                         "source": "DuckDuckGo",
                         "title": link.text.strip(),
-                        "price": "",  # Not structured
+                        "price": "",
                         "condition": "",
                         "vendor": "",
                         "url": link["href"],
                         "image": ""
                     })
-            # Debug: If nothing was found, print the raw HTML
             if not results:
-                print("DEBUG: No results found. First 500 chars of HTML:", resp.text[:500])
+                print("DEBUG: NO RESULTS. HTML START:")
+                print(html[:1000])
             return results
         except Exception as e:
             print("[DuckDuckGoScraper] Error:", e)
