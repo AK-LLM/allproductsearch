@@ -2,20 +2,9 @@ from abc import ABC, abstractmethod
 
 class BaseScraper(ABC):
     @abstractmethod
-    def search(self, query: str) -> list:
+    def search(self, params: dict) -> list:
         """
-        Should return a list of dicts:
-        [
-            {
-                'source': 'string',
-                'title': 'string',
-                'price': 'string',
-                'condition': 'string',
-                'url': 'string',
-                'image': 'string or None',
-            },
-            ...
-        ]
+        Returns list of dicts, each dict representing a result.
         """
         pass
 
