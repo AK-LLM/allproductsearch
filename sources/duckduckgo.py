@@ -6,8 +6,10 @@ class DuckDuckGoScraper(BaseScraper):
     handles = ['product']
 
     def search(self, params):
+        print("DuckDuckGoScraper: search() called", flush=True)  # Debug line
         query = params.get("query", "")
         if not query:
+            print("DEBUG: No query provided.", flush=True)
             return []
         url = f"https://html.duckduckgo.com/html/?q={query.replace(' ', '+')}"
         headers = {"User-Agent": "Mozilla/5.0"}
@@ -29,9 +31,11 @@ class DuckDuckGoScraper(BaseScraper):
                         "image": ""
                     })
             if not results:
-                print("DEBUG: NO RESULTS. HTML START:")
-                print(html[:1000])
+                print("DEBUG: NO RESULTS. HTML START:", flush=True)
+                print(html[:1000], flush=True)
+            else:
+                print(f"DEBUG: {len(results)} DuckDuckGo results found.", flush=True)
             return results
         except Exception as e:
-            print("[DuckDuckGoScraper] Error:", e)
+            print("[DuckDuckGoScraper] Error:", e, flush=True)
             return []
