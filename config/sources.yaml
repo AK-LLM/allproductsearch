@@ -1,6 +1,6 @@
 sources:
-  - module: duckduckgo
-    class: DuckDuckGoScraper
+  - module: bing
+    class: BingScraper
     enabled: true
   - module: travel
     class: TravelScraper
