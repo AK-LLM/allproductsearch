@@ -44,13 +44,24 @@ elif search_type == "Hotel":
 else:
     search_params = {}
 
+def make_clickable(url, title="Open Link"):
+    if url:
+        return f'<a href="{url}" target="_blank">{title}</a>'
+    else:
+        return ""
+
 if st.button("Search"):
     with st.spinner("Searching across all relevant sources..."):
         results = search_all(search_params)
         if results:
             df = pd.DataFrame(results)
+            # Add a clickable "Link" column
+            df["Link"] = df.apply(lambda row: make_clickable(row.get("url", "")), axis=1)
+            if "url" in df.columns:
+                df = df.drop(columns=["url"])
             st.success(f"Found {len(df)} results!")
-            st.dataframe(df)
+            # Show HTML table with clickable links
+            st.write(df.to_html(escape=False, index=False), unsafe_allow_html=True)
             st.download_button("Export to CSV", df.to_csv(index=False), "results.csv")
         else:
             st.warning("No results found. Try different search criteria.")
